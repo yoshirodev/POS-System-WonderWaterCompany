@@ -1,6 +1,9 @@
 body{
     background-color: #0F172A;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
+
 
 header{
     color: #38B3CA;
@@ -11,10 +14,13 @@ header{
     font-weight: bold;
     white-space: nowrap;
     padding-top: 20px;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.4);
 }
 
+
 .container{
-    height: 500px;
+    height: 550px;
     width: 500px;
     background-color: #020617;
     margin-left: 130px;
@@ -22,55 +28,87 @@ header{
     border-top-left-radius: 90px;
     border-bottom-left-radius: 90px;
     border-bottom-right-radius: 90px;
-
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
 }
+
 
 h1{
     text-align: center;
     color: #38B3CA;
     margin-bottom: 90px;
     padding-top: 40px;
+    letter-spacing: 2px;
 }
+
 
 .text{
     color: #38B3CA;
     display: block;
     margin-left: 70px;
-    
+    font-size: 14px;
+    margin-bottom: 5px;
 }
+
 
 .inp{
     display: block;
-    height: 30px;
+    height: 35px;
     width: 350px;
     border-radius: 10px;
     margin: auto;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    background-color: #0F172A;
+    border: 1px solid #38B3CA;
+    color: antiquewhite;
+    padding-left: 10px;
+    transition: 0.3s ease;
 }
 
+.inp:focus{
+    outline: none;
+    box-shadow: 0 0 8px #38B3CA;
+}
+
+
 .click{
-    
     display: block;
     margin: 0 auto;
-    height: 30px;
+    height: 35px;
     width: 350px;
     border-radius: 30px;
     background-color: #020617;
     outline: 1px solid antiquewhite;
     color: #38B3CA;
-
+    cursor: pointer;
+    transition: 0.3s ease;
 }
+
+.click:hover{
+    background-color: #38B3CA;
+    color: #020617;
+    transform: scale(1.03);
+}
+
 
 h2{
     margin-top: 60px;
     text-align: center;
     font-size: 12px;
     color: antiquewhite;
+    letter-spacing: 1px;
 }
+
 
 .link{
     color: #38B3CA;
+    text-decoration: none;
+    font-weight: bold;
 }
+
+.link:hover{
+    text-decoration: underline;
+}
+
 
 img{
     height: 350px;
@@ -79,18 +117,20 @@ img{
     margin-left: 90px;
     padding-top: 40px;
     padding-right: 100px;
-    
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.6));
 }
 
+
 h3{
-    color:#38B3CA ;
+    color:#38B3CA;
     text-align: center;
     font-size: 50px;
+    letter-spacing: 3px;
 }
+
 
 .pageBox{
     display: flex;
- 
 }
 
 .design{
