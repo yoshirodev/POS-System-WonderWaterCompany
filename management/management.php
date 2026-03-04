@@ -55,21 +55,30 @@
     </div>
 
     <div id="container">
+        <!-- Put here the features that can be seen by all role-->
+
         <?php if ($_SESSION['role'] === "HR") { ?>
             <div style=" padding:10px; margin-top:10px;">
-                <h1>Manager</h1>
+                <!-- Put here the features that can only be seen by HR -->
+                <h1>HR</h1>
+
+
             </div>
         <?php } ?>
 
         <?php if ($_SESSION['role'] === "Manager") { ?>
             <div style=" padding:10px; margin-top:10px;">
+                <!-- Put here the features that can only be seen by Manager -->
                 <h1>Manager</h1>
+
             </div>
         <?php } ?>
 
         <?php if ($_SESSION['role'] === "Employee") { ?>
             <div style=" padding:10px; margin-top:10px;">
+                <!-- Put here the features that can only be seen by Employee -->
                 <h1>Employee</h1>
+
             </div>
         <?php } ?>
     </div>
