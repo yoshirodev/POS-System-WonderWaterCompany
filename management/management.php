@@ -55,6 +55,12 @@
     </div>
 
     <div id="container">
+        <?php if ($_SESSION['role'] === "HR") { ?>
+            <div style=" padding:10px; margin-top:10px;">
+                <h1>Manager</h1>
+            </div>
+        <?php } ?>
+
         <?php if ($_SESSION['role'] === "Manager") { ?>
             <div style=" padding:10px; margin-top:10px;">
                 <h1>Manager</h1>

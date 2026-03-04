@@ -49,14 +49,10 @@
         <label class = "text" for="username">Username</label>
         <input class = "inp" type="text" name="username" placeholder="Enter Username">
         <label class = "text" for="userpassword">Password</label>
-        <input class = "inp" type="password" name="userpassword" placeholder="Enter Password">
-
-           
-                <input class = "click" type="submit">
-                <h2>Or Register</h2>
-                <button class = "click" ><a class = "link" href="management/registration.php">Register</a></button>
-            
-        
+        <input class = "inp" type="password" name="userpassword" placeholder="Enter Password">   
+        <input class = "click" type="submit">
+        <h2>Or Register</h2>
+        <button class = "click" ><a class = "link" href="management/registration.php">Register</a></button>
     </form>
     </div>
     <div class = "design" ><img src="assets/logo.png" alt="">
