@@ -1,0 +1,309 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Mar 04, 2026 at 08:13 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `waterapp`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `daily_sales`
+--
+
+CREATE TABLE `daily_sales` (
+  `daily_id` int(11) NOT NULL,
+  `sales_date` date DEFAULT NULL,
+  `total_transactions` int(11) DEFAULT NULL,
+  `total_items_sold` int(11) DEFAULT NULL,
+  `total_revenue` decimal(12,2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inventory`
+--
+
+CREATE TABLE `inventory` (
+  `id` int(11) NOT NULL,
+  `product_name` varchar(100) NOT NULL,
+  `type` varchar(50) DEFAULT NULL,
+  `cost` decimal(10,2) DEFAULT NULL,
+  `quantity` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `inventory`
+--
+
+INSERT INTO `inventory` (`id`, `product_name`, `type`, `cost`, `quantity`) VALUES
+(2, 'TestProduct', 'testing', 100.00, 100),
+(3, '1000ml Plastic Gallon', 'container', 50.00, 100),
+(4, 'Water Dispenser', 'machine', 5000.00, 50),
+(5, 'Water Filter', 'tool', 200.00, 50),
+(6, 'WebTestProduct', 'testing', 100.00, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `logindata`
+--
+
+CREATE TABLE `logindata` (
+  `accID` int(100) NOT NULL,
+  `lastname` varchar(100) NOT NULL,
+  `firstname` varchar(100) NOT NULL,
+  `middlename` varchar(100) NOT NULL,
+  `birthdate` date NOT NULL,
+  `gender` varchar(100) NOT NULL,
+  `phonenumber` varchar(11) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `userpassword` varchar(200) NOT NULL,
+  `accountType` varchar(100) NOT NULL,
+  `username` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `logindata`
+--
+
+INSERT INTO `logindata` (`accID`, `lastname`, `firstname`, `middlename`, `birthdate`, `gender`, `phonenumber`, `email`, `userpassword`, `accountType`, `username`) VALUES
+(4, 'Rodriguez', 'Yoshiki', '', '2006-03-04', 'Male', '992-835-567', 'yoshiki.rodriguez@unc.edu.ph', '$2y$10$PawMqLNHsVq4Qq.uzvMWYeVfLRwQ0gGz7EcO49Q6lE8nY60hZKCVe', 'Manager', 'yoshi'),
+(7, 'Gasilla', 'Zier Damerick', 'Tible', '2026-11-11', 'Male', '992-835-246', 'zierdamerick.gasilla@unc.edu.ph', '$2y$10$jGP/jSsb4PD8j9p1RS1njuMTUbYHMoliR0RAKKpsQAiNc8vCfGP1K', 'Employee', 'zier'),
+(9, 'Balatan', 'Rem', '', '2000-04-16', 'Male', '992-835-567', 'rem.balatan@unc.edu.ph', '$2y$10$sQ.OzSPilswab0KB4/xCnu1oaWJZL5fl/KgEtmucBYNHSwqLqRCGG', 'Employee', 'rem'),
+(10, 'Boncodin', 'Kyle Mitchel', '', '2026-03-18', 'Male', '992-724-246', 'kylemitchel.boncodin@unc.edu.ph', '$2y$10$QoGxkfgXkAxZgNiodhjUBuigCNscgskKT8R3s7y5vib5h0KmEk41C', 'Manager', 'bom');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `monthly_sales`
+--
+
+CREATE TABLE `monthly_sales` (
+  `monthly_id` int(11) NOT NULL,
+  `year` int(11) DEFAULT NULL,
+  `month` int(11) DEFAULT NULL,
+  `total_transactions` int(11) DEFAULT NULL,
+  `total_items_sold` int(11) DEFAULT NULL,
+  `total_revenue` decimal(12,2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `service_requests`
+--
+
+CREATE TABLE `service_requests` (
+  `service_id` int(11) NOT NULL,
+  `name` varchar(150) NOT NULL,
+  `address` varchar(150) NOT NULL,
+  `phone_no` varchar(30) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `service_ordered` varchar(100) NOT NULL,
+  `status` enum('Pending','Done') DEFAULT 'Pending',
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `price` double NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transactions`
+--
+
+CREATE TABLE `transactions` (
+  `transaction_id` int(11) NOT NULL,
+  `total` decimal(10,2) NOT NULL,
+  `payment_method` varchar(20) DEFAULT NULL,
+  `transaction_date` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transaction_items`
+--
+
+CREATE TABLE `transaction_items` (
+  `item_id` int(11) NOT NULL,
+  `transaction_id` int(11) DEFAULT NULL,
+  `product_name` varchar(100) DEFAULT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  `price` decimal(10,2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transaction_log`
+--
+
+CREATE TABLE `transaction_log` (
+  `log_id` int(11) NOT NULL,
+  `transaction_id` int(11) DEFAULT NULL,
+  `timestamp` datetime DEFAULT current_timestamp(),
+  `product_name` varchar(100) DEFAULT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  `price` decimal(10,2) DEFAULT NULL,
+  `subtotal` decimal(10,2) DEFAULT NULL,
+  `payment_method` varchar(50) DEFAULT NULL,
+  `amount_paid` decimal(10,2) DEFAULT NULL,
+  `change_amount` decimal(10,2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `weekly_sales`
+--
+
+CREATE TABLE `weekly_sales` (
+  `weekly_id` int(11) NOT NULL,
+  `year` int(11) DEFAULT NULL,
+  `week_number` int(11) DEFAULT NULL,
+  `total_transactions` int(11) DEFAULT NULL,
+  `total_items_sold` int(11) DEFAULT NULL,
+  `total_revenue` decimal(12,2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `daily_sales`
+--
+ALTER TABLE `daily_sales`
+  ADD PRIMARY KEY (`daily_id`),
+  ADD UNIQUE KEY `sales_date` (`sales_date`);
+
+--
+-- Indexes for table `inventory`
+--
+ALTER TABLE `inventory`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `logindata`
+--
+ALTER TABLE `logindata`
+  ADD PRIMARY KEY (`accID`);
+
+--
+-- Indexes for table `monthly_sales`
+--
+ALTER TABLE `monthly_sales`
+  ADD PRIMARY KEY (`monthly_id`),
+  ADD UNIQUE KEY `year_month` (`year`,`month`);
+
+--
+-- Indexes for table `service_requests`
+--
+ALTER TABLE `service_requests`
+  ADD PRIMARY KEY (`service_id`);
+
+--
+-- Indexes for table `transactions`
+--
+ALTER TABLE `transactions`
+  ADD PRIMARY KEY (`transaction_id`);
+
+--
+-- Indexes for table `transaction_items`
+--
+ALTER TABLE `transaction_items`
+  ADD PRIMARY KEY (`item_id`);
+
+--
+-- Indexes for table `transaction_log`
+--
+ALTER TABLE `transaction_log`
+  ADD PRIMARY KEY (`log_id`);
+
+--
+-- Indexes for table `weekly_sales`
+--
+ALTER TABLE `weekly_sales`
+  ADD PRIMARY KEY (`weekly_id`),
+  ADD UNIQUE KEY `year_week` (`year`,`week_number`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `daily_sales`
+--
+ALTER TABLE `daily_sales`
+  MODIFY `daily_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `inventory`
+--
+ALTER TABLE `inventory`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `logindata`
+--
+ALTER TABLE `logindata`
+  MODIFY `accID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `monthly_sales`
+--
+ALTER TABLE `monthly_sales`
+  MODIFY `monthly_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `service_requests`
+--
+ALTER TABLE `service_requests`
+  MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `transactions`
+--
+ALTER TABLE `transactions`
+  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `transaction_items`
+--
+ALTER TABLE `transaction_items`
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `transaction_log`
+--
+ALTER TABLE `transaction_log`
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `weekly_sales`
+--
+ALTER TABLE `weekly_sales`
+  MODIFY `weekly_id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
