@@ -1,0 +1,98 @@
+body{
+    background-color: #0F172A;
+}
+
+header{
+    color: #38B3CA;
+    background-color: #020617;
+    height: 50px;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    white-space: nowrap;
+    padding-top: 20px;
+}
+
+.container{
+    height: 500px;
+    width: 500px;
+    background-color: #020617;
+    margin-left: 130px;
+    margin-top: 75px;
+    border-top-left-radius: 90px;
+    border-bottom-left-radius: 90px;
+    border-bottom-right-radius: 90px;
+
+}
+
+h1{
+    text-align: center;
+    color: #38B3CA;
+    margin-bottom: 90px;
+    padding-top: 40px;
+}
+
+.text{
+    color: #38B3CA;
+    display: block;
+    margin-left: 70px;
+    
+}
+
+.inp{
+    display: block;
+    height: 30px;
+    width: 350px;
+    border-radius: 10px;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.click{
+    
+    display: block;
+    margin: 0 auto;
+    height: 30px;
+    width: 350px;
+    border-radius: 30px;
+    background-color: #020617;
+    outline: 1px solid antiquewhite;
+    color: #38B3CA;
+
+}
+
+h2{
+    margin-top: 60px;
+    text-align: center;
+    font-size: 12px;
+    color: antiquewhite;
+}
+
+.link{
+    color: #38B3CA;
+}
+
+img{
+    height: 350px;
+    width: 350px;
+    margin: auto;
+    margin-left: 90px;
+    padding-top: 40px;
+    padding-right: 100px;
+    
+}
+
+h3{
+    color:#38B3CA ;
+    text-align: center;
+    font-size: 50px;
+}
+
+.pageBox{
+    display: flex;
+ 
+}
+
+.design{
+    display: block;
+}

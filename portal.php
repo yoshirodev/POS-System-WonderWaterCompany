@@ -34,19 +34,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="tools/style.css">
+    <link rel="stylesheet" href="portal.css">
     <title>Sign In</title>
 </head>
 <body>
-    <form id="container" action="portal.php" method="post">
+    <header>
+        Wonder Water Equipment and Supplies Trading
+    </header>
+    
+    <div class = "pageBox">
+        <div class = "container"> 
+        <form id="container" action="portal.php" method="post">
         <h1>LOG IN</h1>
-        <label for="username">Username</label>
-        <input type="text" name="username" placeholder="username">
-        <label for="userpassword">Password</label>
-        <input type="password" name="userpassword" placeholder="password">
+        <label class = "text" for="username">Username</label>
+        <input class = "inp" type="text" name="username" placeholder="Enter Username">
+        <label class = "text" for="userpassword">Password</label>
+        <input class = "inp" type="password" name="userpassword" placeholder="Enter Password">
 
-        <input type="submit">
-        <button ><a href="management/registration.php">Register</a></button>
+           
+                <input class = "click" type="submit">
+                <h2>Or Register</h2>
+                <button class = "click" ><a class = "link" href="management/registration.php">Register</a></button>
+            
+        
     </form>
+    </div>
+    <div class = "design" ><img src="assets/logo.png" alt="">
+            <h3>Welcome Back</h3>
+        </div>
+     
+    </div>
+    
+
+   
+
+  
 </body>
 </html>
