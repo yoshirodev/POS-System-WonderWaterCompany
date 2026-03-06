@@ -37,50 +37,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="tools/style.css">
-    <title>Profile Page</title>
+    <link rel="stylesheet" href="management.css">
+    <title>Dashboard</title>
 </head>
 <body>
-    <div id="container">
-        <h1>Profile</h1>
-        <h2><?= htmlspecialchars($user['firstname'] . " " . $user['middlename'] . " " . $user['lastname']) ?></h2>
-        <h2><?= htmlspecialchars($user['birthdate']) ?></h2>
-        <h2><?= htmlspecialchars($user['email']) ?></h2>
-        <h2>+63<?= htmlspecialchars($user['phonenumber']) ?></h2>
-        <h2><?= htmlspecialchars($user['accountType']) ?></h2>
-
-        <form action="../logout.php">
-            <button>Logout</button>
-        </form>
+    <div class="sidebar">
+        <a href="#">Dashboard</a>
+        <a href="#">Inventory</a>
+        <a href="#">Sales Overview</a>
+        <a href="#">Transactions</a>
+        <a href="#">Settings</a>
     </div>
 
-    <div id="container">
-        <!-- Put here the features that can be seen by all role-->
+    <div class="topbar">
+        <div class="profile-btn" onclick="toggleProfile()">
+            Profile
+        </div>
 
-        <?php if ($_SESSION['role'] === "HR") { ?>
-            <div style=" padding:10px; margin-top:10px;">
-                <!-- Put here the features that can only be seen by HR -->
-                <h1>HR</h1>
+        <button onclick="window.location.href='../logout.php'" class="logout-btn">
+            Logout
+        </button>
+    </div>
 
+    <div id="profileBox" class="profile-box">
+        <h3>Profile</h3>
 
+        <p><?= htmlspecialchars($user['firstname'] . " " . $user['lastname']) ?></p>
+        <p><?= htmlspecialchars($user['email']) ?></p>
+        <p>+63<?= htmlspecialchars($user['phonenumber']) ?></p>
+        <p><?= htmlspecialchars($user['accountType']) ?></p>
+    </div>
+
+    <div class="main">
+
+        <!-- DASHBOARD SECTION (VISIBLE TO ALL) -->
+        <section class="dashboard-section">
+            <h1>Dashboard</h1>
+            <div class="dashboard-cards">
+                <div class="card">
+                    <h2>Daily Sales</h2>
+                    <p>₱0.00</p>
+                </div>
+                <div class="card">
+                    <h2>Overall Stock</h2>
+                    <p>0 Items</p>
+                </div>
             </div>
-        <?php } ?>
+        </section>
 
-        <?php if ($_SESSION['role'] === "Manager") { ?>
-            <div style=" padding:10px; margin-top:10px;">
-                <!-- Put here the features that can only be seen by Manager -->
-                <h1>Manager</h1>
+        <section class="role-section">
+            <?php if ($_SESSION['role'] === "HR") { ?>
+                <div class="role-box">
+                    <h3>HR Management</h3>
+                    <!-- HR ONLY FEATURES HERE -->
+                    <form id="container" action="registration.php" method="post">
+                        <h1>Employee Account Registration Tool</h1>
+                        <label for="lastname">Last Name</label>
+                        <input type="text" name="lastname" placeholder="lastname">
+                        <label for="firstname">First Name</label>
+                        <input type="text" name="firstname" placeholder="firstname">
+                        <label for="middlename">Middle Name</label>
+                        <input type="text" name="middlename" placeholder="middlename">
+                        <label for="birthdate">BirthDate</label>
+                        <input type="date" name="birthdate">
+                        <label for="gender">Gender</label>
+                        <select style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; width: 100%;" name="gender" id="gender">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                        <label for="phonenumber">Phone Number</label>
+                        <input type="tel" id="phonenumber" name="phonenumber" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" placeholder="email">
+                        <label for="username">Username</label>
+                        <input type="username" name="username" placeholder="username">
+                        <label for="userpassword">Password</label>
+                        <input type="password" name="userpassword" placeholder="password">
+                        <label for="role">Account Type</label>
+                        <select style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; width: 100%;" name="accountType" id="accountType">
+                            <option value="Manager">Manager</option>
+                            <option value="Employee">Employee</option>
+                        </select>
+                        <input type="submit">
+                        <button><a href="../portal.php">Login</a></button>
+                    </form>
+                </div>
+            <?php } ?>
 
-            </div>
-        <?php } ?>
+            <?php if ($_SESSION['role'] === "Manager") { ?>
+                <div class="role-box">
+                    <h3>Manager Controls</h3>
+                    <!-- MANAGER ONLY FEATURES HERE -->
 
-        <?php if ($_SESSION['role'] === "Employee") { ?>
-            <div style=" padding:10px; margin-top:10px;">
-                <!-- Put here the features that can only be seen by Employee -->
-                <h1>Employee</h1>
+                </div>
+            <?php } ?>
 
-            </div>
-        <?php } ?>
+            <?php if ($_SESSION['role'] === "Employee") { ?>
+                <div class="role-box">
+                    <h3>Employee Tools</h3>
+                    <!-- EMPLOYEE FEATURES HERE -->
+
+                </div>
+            <?php } ?>
+        </section>
     </div>
 </body>
+<script src="design.js"></script>
 </html>
