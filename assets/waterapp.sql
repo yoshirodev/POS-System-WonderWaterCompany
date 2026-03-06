@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 04, 2026 at 08:13 AM
+-- Generation Time: Mar 06, 2026 at 02:47 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -85,10 +85,8 @@ CREATE TABLE `logindata` (
 --
 
 INSERT INTO `logindata` (`accID`, `lastname`, `firstname`, `middlename`, `birthdate`, `gender`, `phonenumber`, `email`, `userpassword`, `accountType`, `username`) VALUES
-(4, 'Rodriguez', 'Yoshiki', '', '2006-03-04', 'Male', '992-835-567', 'yoshiki.rodriguez@unc.edu.ph', '$2y$10$PawMqLNHsVq4Qq.uzvMWYeVfLRwQ0gGz7EcO49Q6lE8nY60hZKCVe', 'Manager', 'yoshi'),
-(7, 'Gasilla', 'Zier Damerick', 'Tible', '2026-11-11', 'Male', '992-835-246', 'zierdamerick.gasilla@unc.edu.ph', '$2y$10$jGP/jSsb4PD8j9p1RS1njuMTUbYHMoliR0RAKKpsQAiNc8vCfGP1K', 'Employee', 'zier'),
-(9, 'Balatan', 'Rem', '', '2000-04-16', 'Male', '992-835-567', 'rem.balatan@unc.edu.ph', '$2y$10$sQ.OzSPilswab0KB4/xCnu1oaWJZL5fl/KgEtmucBYNHSwqLqRCGG', 'Employee', 'rem'),
-(10, 'Boncodin', 'Kyle Mitchel', '', '2026-03-18', 'Male', '992-724-246', 'kylemitchel.boncodin@unc.edu.ph', '$2y$10$QoGxkfgXkAxZgNiodhjUBuigCNscgskKT8R3s7y5vib5h0KmEk41C', 'Manager', 'bom');
+(10, 'Boncodin', 'Kyle Mitchel', '', '2026-03-18', 'Male', '992-724-246', 'kylemitchel.boncodin@unc.edu.ph', '$2y$10$QoGxkfgXkAxZgNiodhjUBuigCNscgskKT8R3s7y5vib5h0KmEk41C', 'Manager', 'bom'),
+(11, 'Rodriguez', 'Yoshiki', '', '2006-03-04', 'Male', '992-724-246', 'yoshiki.rodriguez@unc.edu.ph', '$2y$10$s0/Th.ixC9Ykw5gsIXb4ZOWOGeWLvY7eH.mmssXUeoRBbNjzlXJxq', 'HR', 'yoshi');
 
 -- --------------------------------------------------------
 
@@ -265,7 +263,7 @@ ALTER TABLE `inventory`
 -- AUTO_INCREMENT for table `logindata`
 --
 ALTER TABLE `logindata`
-  MODIFY `accID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `accID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `monthly_sales`
