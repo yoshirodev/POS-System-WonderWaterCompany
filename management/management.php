@@ -30,6 +30,12 @@
     }
 
     $user = $result->fetch_assoc();
+
+    $query = "SELECT SUM(quantity) AS total_stock FROM inventory";
+    $result = mysqli_query($conn, $query);
+
+    $row = mysqli_fetch_assoc($result);
+    $total_stock = $row['total_stock'];
 ?>
 
 <!DOCTYPE html>
@@ -80,7 +86,7 @@
                 </div>
                 <div class="card">
                     <h2>Overall Stock</h2>
-                    <p>0 Items</p>
+                    <p><?php echo $total_stock; ?> Items</p>
                 </div>
             </div>
         </section>
