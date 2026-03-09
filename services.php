@@ -93,129 +93,135 @@
     <title>Services | Wonder Water Equipment and Supplies Trading</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="assets/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
-<nav class="navbar">
-    <div class="logo">Wonder Water Equipment and Supplies Trading</div>
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="products.php">Products</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="services.php">Services</a></li>
-        <li><a href="portal.php">Management Portal</a></li>
-    </ul>
-</nav>
+    <nav class="navbar">
 
-<section class="section">
-    <h2>Service Request</h2>
-    <p>Please fill out the form below to request a service.</p>
+        <div class="logo">
+            <img src="assets/logo.png" alt="Wonder Water Logo">
+            <span>Wonder Water Equipment and Supplies Trading</span>
+        </div>
 
-    <?php if ($message): ?>
-        <p style="color:#38bdf8;"><?= htmlspecialchars($message) ?></p>
-    <?php endif; ?>
+        <ul>
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+            <li><a href="about.html"><i class="fa-solid fa-circle-info"></i> About</a></li>
+            <li><a href="products.php"><i class="fa-solid fa-box"></i> Products</a></li>
+            <li><a href="services.php"><i class="fa-solid fa-screwdriver-wrench"></i> Services</a></li>
+            <li><a href="portal.php"><i class="fa-solid fa-user-gear"></i> Portal</a></li>
+        </ul>
 
-    <form method="POST" class="service-form">
-        <input type="text" name="name" placeholder="Name / Organization Name" required>
-        <textarea name="address" placeholder="Address" required></textarea>
-        <input type="text" name="phone" placeholder="Phone Number" required>
-        <input type="email" name="email" placeholder="Email Address" required>
+    </nav>
 
-        <select name="service" required>
-            <option value="">Select Service</option>
-            <option value="Installation of Water Station">
-                Installation of Water Station
-            </option>
-        </select>
+    <section class="section">
+        <h2>Service Request</h2>
+        <p>Please fill out the form below to request a service.</p>
 
-        <button type="submit">Submit Request</button>
-    </form>
-
-    <hr style="margin:50px 0;">
-
-    <h2>Check Service Status</h2>
-    <p>Enter your phone number or email to view your service request.</p>
-
-    <form method="POST" class="service-form">
-        <input
-            type="text"
-            name="search_value"
-            placeholder="Phone Number or Email"
-            required
-        >
-        <button type="submit" name="search">Check Status</button>
-    </form>
-
-    <?php if (!empty($searchResults)): ?>
-        <h3 style="margin-top:30px;">Your Service Requests</h3>
-
-        <table style="width:100%; margin-top:20px; border-collapse:collapse;">
-            <tr style="background:#020617;">
-                <th>Name</th>
-                <th>Service</th>
-                <th>Price</th>
-                <th>Status</th>
-            </tr>
-
-            <?php foreach ($searchResults as $row): ?>
-                <tr style="text-align:center; border-bottom:1px solid #334155;">
-                    <td><?= htmlspecialchars($row['name']) ?></td>
-                    <td><?= htmlspecialchars($row['service_ordered']) ?></td>
-                    <td>₱<?= number_format($row['price'], 2) ?></td>
-                    <td><?= ucfirst($row['status']) ?></td>
-                </tr>
-            <?php endforeach; ?>
-        </table>
-
-        <?php if (!empty($searchResults)): ?>
-            <h3 style="margin-top:20px;">Edit Your Service Request</h3>
-
-            <form method="POST" class="service-form">
-                <input type="hidden" name="update_id" value="<?= $searchResults[0]['service_id'] ?>">
-
-
-                <input type="text" name="update_name" 
-                    value="<?= htmlspecialchars($searchResults[0]['name']) ?>" 
-                    placeholder="Name / Organization Name" required>
-
-                <textarea name="update_address" required><?= htmlspecialchars($searchResults[0]['address']) ?></textarea>
-
-                <input type="text" name="update_phone" 
-                    value="<?= htmlspecialchars($searchResults[0]['phone_no']) ?>" 
-                    placeholder="Phone Number" required>
-
-                <input type="email" name="update_email" 
-                    value="<?= htmlspecialchars($searchResults[0]['email']) ?>" 
-                    placeholder="Email Address" required>
-
-                <select name="update_service" required>
-                    <option value="">Select Service</option>
-                    <option value="Installation of Water Station" 
-                        <?= $searchResults[0]['service_ordered'] === 'Installation of Water Station' ? 'selected' : '' ?>>
-                        Installation of Water Station
-                    </option>
-                </select>
-
-                <button type="submit" name="update_request" value="1">Update Request</button>
-
-                <form method="POST" style="margin-top:10px;">
-                    <input type="hidden" name="delete_id" value="<?= $searchResults[0]['service_id'] ?>">
-                    <button type="submit" name="delete_request" value="1" style="background:#f87171; padding:10px 20px; border:none; cursor:pointer;">
-                        Delete Request
-                    </button>
-                </form>
-
-            </form>
+        <?php if ($message): ?>
+            <p style="color:#38bdf8;"><?= htmlspecialchars($message) ?></p>
         <?php endif; ?>
 
-    <?php elseif (isset($_POST['search'])): ?>
-        <p style="color:#f87171; margin-top:20px;">
-            No service request found.
-        </p>
-    <?php endif; ?>
+        <form method="POST" class="service-form">
+            <input type="text" name="name" placeholder="Name / Organization Name" required>
+            <textarea name="address" placeholder="Address" required></textarea>
+            <input type="text" name="phone" placeholder="Phone Number" required>
+            <input type="email" name="email" placeholder="Email Address" required>
 
-</section>
+            <select name="service" required>
+                <option value="">Select Service</option>
+                <option value="Installation of Water Station">
+                    Installation of Water Station
+                </option>
+            </select>
+
+            <button type="submit">Submit Request</button>
+        </form>
+
+        <hr style="margin:50px 0;">
+
+        <h2>Check Service Status</h2>
+        <p>Enter your phone number or email to view your service request.</p>
+
+        <form method="POST" class="service-form">
+            <input
+                type="text"
+                name="search_value"
+                placeholder="Phone Number or Email"
+                required
+            >
+            <button type="submit" name="search">Check Status</button>
+        </form>
+
+        <?php if (!empty($searchResults)): ?>
+            <h3 style="margin-top:30px;">Your Service Requests</h3>
+
+            <table style="width:100%; margin-top:20px; border-collapse:collapse;">
+                <tr style="background:#020617;">
+                    <th>Name</th>
+                    <th>Service</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                </tr>
+
+                <?php foreach ($searchResults as $row): ?>
+                    <tr style="text-align:center; border-bottom:1px solid #334155;">
+                        <td><?= htmlspecialchars($row['name']) ?></td>
+                        <td><?= htmlspecialchars($row['service_ordered']) ?></td>
+                        <td>₱<?= number_format($row['price'], 2) ?></td>
+                        <td><?= ucfirst($row['status']) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+
+            <?php if (!empty($searchResults)): ?>
+                <h3 style="margin-top:20px;">Edit Your Service Request</h3>
+
+                <form method="POST" class="service-form">
+                    <input type="hidden" name="update_id" value="<?= $searchResults[0]['service_id'] ?>">
+
+
+                    <input type="text" name="update_name" 
+                        value="<?= htmlspecialchars($searchResults[0]['name']) ?>" 
+                        placeholder="Name / Organization Name" required>
+
+                    <textarea name="update_address" required><?= htmlspecialchars($searchResults[0]['address']) ?></textarea>
+
+                    <input type="text" name="update_phone" 
+                        value="<?= htmlspecialchars($searchResults[0]['phone_no']) ?>" 
+                        placeholder="Phone Number" required>
+
+                    <input type="email" name="update_email" 
+                        value="<?= htmlspecialchars($searchResults[0]['email']) ?>" 
+                        placeholder="Email Address" required>
+
+                    <select name="update_service" required>
+                        <option value="">Select Service</option>
+                        <option value="Installation of Water Station" 
+                            <?= $searchResults[0]['service_ordered'] === 'Installation of Water Station' ? 'selected' : '' ?>>
+                            Installation of Water Station
+                        </option>
+                    </select>
+
+                    <button type="submit" name="update_request" value="1">Update Request</button>
+
+                    <form method="POST" style="margin-top:10px;">
+                        <input type="hidden" name="delete_id" value="<?= $searchResults[0]['service_id'] ?>">
+                        <button type="submit" name="delete_request" value="1" style="background:#f87171; padding:10px 20px; border:none; cursor:pointer;">
+                            Delete Request
+                        </button>
+                    </form>
+
+                </form>
+            <?php endif; ?>
+
+        <?php elseif (isset($_POST['search'])): ?>
+            <p style="color:#f87171; margin-top:20px;">
+                No service request found.
+            </p>
+        <?php endif; ?>
+
+    </section>
 
 <footer>
     © 2026 Wonder Water Equipment and Supplies Trading. All rights reserved.
