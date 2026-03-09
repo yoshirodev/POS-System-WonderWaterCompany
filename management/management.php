@@ -48,11 +48,11 @@
 </head>
 <body>
     <div class="sidebar">
-        <a href="#">Dashboard</a>
-        <a href="#">Inventory</a>
-        <a href="#">Sales Overview</a>
-        <a href="#">Transactions</a>
-        <a href="#">Settings</a>
+        <a href="management.php">Dashboard</a>
+        <a href="inventory.php">Inventory</a>
+        <a href="sales.php">Sales Overview</a>
+        <a href="transactions.php">Transactions</a>
+        <a href="settings.php">Settings</a>
     </div>
 
     <div class="topbar">
@@ -77,7 +77,7 @@
     <div class="main">
 
         <!-- DASHBOARD SECTION (VISIBLE TO ALL) -->
-        <section class="dashboard-section">
+        <section class="main-section">
             <h1>Dashboard</h1>
             <div class="dashboard-cards">
                 <div class="card">
