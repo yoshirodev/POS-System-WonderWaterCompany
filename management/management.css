@@ -61,6 +61,7 @@ body{
     color:white;
     border-radius:6px;
     cursor:pointer;
+    transition: all 0.3s ease ;
 }
 
 .profile-box{
@@ -73,6 +74,7 @@ body{
     width:250px;
     display:none;
     box-shadow:0 10px 25px rgba(0,0,0,0.1);
+    outline: 1px solid #1e293b;
 }
 
 .main{
@@ -130,4 +132,10 @@ body{
 .role-box h3{
     margin-top:0;
     color:#2563eb;
+}
+
+.logout-btn:hover {
+    background-color: red;
+    transform: scale(1.05);
+
 }
