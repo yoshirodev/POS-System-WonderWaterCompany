@@ -23,7 +23,7 @@
                 header("Location: management/management.php");
                 exit();
             } else {
-                echo "Wrong email or password";
+                $error = "Wrong username or password";
             }
         }
     }
@@ -50,6 +50,11 @@
         <input class = "inp" type="text" name="username" placeholder="Enter Username">
         <label class = "text" for="userpassword">Password</label>
         <input class = "inp" type="password" name="userpassword" placeholder="Enter Password">   
+
+        <div class="error">
+            <?php if(!empty($error)) { echo $error; } ?>
+        </div>
+
         <input class = "click" type="submit">
     </form>
     </div>
