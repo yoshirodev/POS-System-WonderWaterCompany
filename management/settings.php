@@ -7,14 +7,7 @@
         header("Location: ../portal.php");
         exit;
     }
-
-    if (time() - $_SESSION['last_activity'] > 10) {
-        session_unset();
-        session_destroy();
-        header("Location: ../portal.php");
-        exit();
-    }
-
+    
     $_SESSION['last_activity'] = time();
 
     $userID = $_SESSION['user_id'];

@@ -142,6 +142,24 @@ body{
     margin-top:40px;
 }
 
+.services-box{
+
+    background:white;
+
+    padding:26px;
+
+    border-radius:14px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,0.08);
+
+    text-align: center;
+}
+
+.services-box h3{
+    color:#0ea5e9;
+}
+
+
 
 /* MODERN CARDS */
 
@@ -192,6 +210,15 @@ body{
     box-shadow:0 8px 25px rgba(0,0,0,0.08);
 
     transition:.25s;
+}
+
+.product-image{
+    width:100%;
+    aspect-ratio:1 / 1;
+    overflow:hidden;
+    border-radius:8px;
+    margin-bottom:10px;
+    background:#f3f3f3;
 }
 
 .product-card:hover{

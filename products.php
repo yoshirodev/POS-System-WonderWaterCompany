@@ -1,9 +1,7 @@
 <?php
     include 'database/db.php';
 
-    $sql = "SELECT product_name, cost 
-            FROM inventory
-            WHERE quantity > 0";
+    $sql = "SELECT product_name, cost, image_path FROM inventory WHERE quantity > 0";
 
     $result = $conn->query($sql);
 ?>
@@ -45,6 +43,9 @@
             <?php if ($result->num_rows > 0): ?>
                 <?php while ($row = $result->fetch_assoc()): ?>
                     <div class="product-card">
+                        <div class="product-image">
+                            <img src="<?= htmlspecialchars($row['image_path'] ?? 'https://image.shutterstock.com/image-photo/coriander-isolated-on-wood-background-260nw-1416953786.jpg') ?>" alt="product">
+                        </div>
                         <h3><?= htmlspecialchars($row['product_name']) ?></h3>
                         <p class="price">₱<?= number_format($row['cost'], 2) ?></p>
                     </div>

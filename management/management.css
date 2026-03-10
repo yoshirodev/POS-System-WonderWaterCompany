@@ -99,7 +99,43 @@ body{
     box-shadow:0 5px 15px rgba(0,0,0,0.05);
 }
 
+
+/* ===== INVENTORY CARDS ===== */
+
+.inventory-cards{
+    display:grid;
+    grid-template-columns:repeat(5,minmax(220px,1fr));
+    gap:25px;
+    margin-top:40px;
+}
+
+.inv-card{
+    background:white;
+    padding:25px;
+    border-radius:10px;
+    width:220px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.05);
+    transition:all .25s ease;
+}
+
+.product-image{
+    width:100%;
+    aspect-ratio:1 / 1;
+    overflow:hidden;
+    border-radius:8px;
+    margin-bottom:10px;
+    background:#f3f3f3;
+}
+
+.inv-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 15px 35px rgba(0,0,0,0.12);
+}
+
 .card h2{
+    text-align: center;
     margin:0 0 10px 0;
     color:#2563eb;
     font-size:18px;
@@ -138,4 +174,11 @@ body{
     background-color: red;
     transform: scale(1.05);
 
+}
+
+@media(max-width:900px){
+
+    .inventory-cards{
+        grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    }
 }

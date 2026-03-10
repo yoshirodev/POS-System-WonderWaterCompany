@@ -8,13 +8,6 @@
         exit;
     }
 
-    if (time() - $_SESSION['last_activity'] > 10) {
-        session_unset();
-        session_destroy();
-        header("Location: ../portal.php");
-        exit();
-    }
-
     $_SESSION['last_activity'] = time();
 
     $userID = $_SESSION['user_id'];
@@ -30,6 +23,8 @@
     }
 
     $user = $result->fetch_assoc();
+
+    $inventoryresult = $conn->query("SELECT id, product_name, quantity, type, cost, image_path FROM inventory");
 ?>
 
 <!DOCTYPE html>
@@ -72,7 +67,20 @@
 
         <section class="main-section">
             <h1>Inventory</h1>
-
+            <div class="inventory-cards">
+                <?php while ($row = $inventoryresult->fetch_assoc()): ?>
+                    <div class="inv-card">
+                        <div class="product-image">
+                            <img src="<?= htmlspecialchars($row['image_path'] ?? 'https://image.shutterstock.com/image-photo/coriander-isolated-on-wood-background-260nw-1416953786.jpg') ?>" alt="product">
+                        </div>
+                        <h3>ID: <?= htmlspecialchars($row['id']) ?></h3>
+                        <h3><?= htmlspecialchars($row['product_name']) ?></h3>
+                        <p>Stock: <?= htmlspecialchars($row['quantity']) ?></p>
+                        <p>Cost: <?= htmlspecialchars($row['cost']) ?></p>
+                        <p>Type: <?= htmlspecialchars($row['type']) ?></p>
+                    </div>
+                <?php endwhile; ?>
+            </div>
         </section>
 
         <section class="role-section">

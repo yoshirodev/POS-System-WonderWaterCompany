@@ -115,6 +115,16 @@
     </nav>
 
     <section class="section">
+
+        <div class="services-box">
+            <h3>We Offer Various Services</h3>
+            <p>Membrane Cleaning</p>
+            </p>Rehab of Media Filters</p>
+            <p>Repair and Upgrades</p>
+            <p>Dual Membrane Upgrade</p>
+            <p>Supply and Install Water Stations</p>
+        </div>
+
         <h2>Service Request</h2>
         <p>Please fill out the form below to request a service.</p>
 
@@ -130,8 +140,20 @@
 
             <select name="service" required>
                 <option value="">Select Service</option>
-                <option value="Installation of Water Station">
-                    Installation of Water Station
+                <option value="Supply and Install Water Stations">
+                    Supply and Install Water Stations
+                </option>
+                <option value="Membrane Cleaning">
+                    Membrane Cleaning
+                </option>
+                <option value="Rehab of Media Filters">
+                    Rehab of Media Filters
+                </option>
+                <option value="Repair and Upgrades">
+                    Repair and Upgrades
+                </option>
+                <option value="Dual Membrane Upgrade">
+                    Dual Membrane Upgrade
                 </option>
             </select>
 
@@ -197,10 +219,36 @@
 
                     <select name="update_service" required>
                         <option value="">Select Service</option>
-                        <option value="Installation of Water Station" 
-                            <?= $searchResults[0]['service_ordered'] === 'Installation of Water Station' ? 'selected' : '' ?>>
-                            Installation of Water Station
+                        <option value="Membrane Cleaning" 
+                            <?= $searchResults[0]['service_ordered'] === 'Membrane Cleaning' ? 'selected' : '' ?>>
+                            Membrane Cleaning
                         </option>
+                        <option value="Rehab of Media Filters" 
+                            <?= $searchResults[0]['service_ordered'] === 'Rehab of Media Filters' ? 'selected' : '' ?>>
+                            Rehab of Media Filters
+                        </option>
+                        <option value="Repair and Upgrades" 
+                            <?= $searchResults[0]['service_ordered'] === 'Repair and Upgrades' ? 'selected' : '' ?>>
+                            Repair and Upgrades
+                        </option>
+                        <option value="Dual Membrane Upgrade" 
+                            <?= $searchResults[0]['service_ordered'] === 'Dual Membrane Upgrade' ? 'selected' : '' ?>>
+                            Dual Membrane Upgrade
+                        </option>
+                        <option value="Supply and Install Water Stations" 
+                            <?= $searchResults[0]['service_ordered'] === 'Supply and Install Water Stations' ? 'selected' : '' ?>>
+                            Supply and Install Water Stations
+                        </option>
+                    </select>
+
+                    <button type="submit" name="update_request" value="1">Update Request</button>
+
+                    <form method="POST" style="margin-top:10px;">
+                        <input type="hidden" name="delete_id" value="<?= $searchResults[0]['service_id'] ?>">
+                        <button type="submit" name="delete_request" value="1" style="background:#f87171; padding:10px 20px; border:none; cursor:pointer;">
+                            Delete Request
+                        </button>
+                    </form>
                     </select>
 
                     <button type="submit" name="update_request" value="1">Update Request</button>
