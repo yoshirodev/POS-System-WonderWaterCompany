@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 06, 2026 at 02:47 PM
+-- Generation Time: Mar 10, 2026 at 01:03 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -46,19 +46,30 @@ CREATE TABLE `inventory` (
   `product_name` varchar(100) NOT NULL,
   `type` varchar(50) DEFAULT NULL,
   `cost` decimal(10,2) DEFAULT NULL,
-  `quantity` int(11) NOT NULL DEFAULT 0
+  `quantity` int(11) NOT NULL DEFAULT 0,
+  `image_path` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `inventory`
 --
 
-INSERT INTO `inventory` (`id`, `product_name`, `type`, `cost`, `quantity`) VALUES
-(2, 'TestProduct', 'testing', 100.00, 100),
-(3, '1000ml Plastic Gallon', 'container', 50.00, 100),
-(4, 'Water Dispenser', 'machine', 5000.00, 50),
-(5, 'Water Filter', 'tool', 200.00, 50),
-(6, 'WebTestProduct', 'testing', 100.00, 0);
+INSERT INTO `inventory` (`id`, `product_name`, `type`, `cost`, `quantity`, `image_path`) VALUES
+(1, '5 Gal. Slim Container', 'container', 450.00, 100, ''),
+(2, '5 Gal. Round Container', 'container', 420.00, 100, ''),
+(3, 'R.O Membranes', 'filter', 1200.00, 100, ''),
+(4, 'Flow Meters', 'equipment', 350.00, 100, ''),
+(5, 'Pressure Gauge', 'equipment', 300.00, 100, ''),
+(6, 'Filter Housing', 'filter', 650.00, 100, ''),
+(7, 'Sediment Filters', 'filter', 120.00, 100, ''),
+(8, 'Booster Pumps', 'equipment', 3500.00, 100, ''),
+(9, 'Brine Tanks', 'container', 2500.00, 100, ''),
+(10, 'Heat Gun', 'tool', 900.00, 100, ''),
+(11, 'Filter Seals', 'parts', 80.00, 100, ''),
+(12, 'UV Lamps', 'filter', 1500.00, 100, ''),
+(13, 'Automatic Pressure Control (APC)', 'equipment', 1800.00, 100, ''),
+(14, 'TDS Meter', 'equipment', 700.00, 100, ''),
+(15, '20x30 Plastic for Containers', 'supplies', 150.00, 100, '');
 
 -- --------------------------------------------------------
 
@@ -257,7 +268,7 @@ ALTER TABLE `daily_sales`
 -- AUTO_INCREMENT for table `inventory`
 --
 ALTER TABLE `inventory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `logindata`
