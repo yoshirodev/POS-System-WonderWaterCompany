@@ -68,15 +68,13 @@
 
         <section class="main-section">
             <h1>Sales Overview <i class="fa-solid fa-chart-line"></i></h1>
-
         </section>
 
         <section class="role-section">
             <?php if ($_SESSION['role'] === "HR") { ?>
                 <div class="role-box">
-                    <h3>HR Controls</h3>
-                    <!-- HR ONLY FEATURES HERE -->
-
+                    <h3>HR Access</h3>
+                    <p>No Access | Confidential Data</p>
                 </div>
             <?php } ?>
 
@@ -90,9 +88,8 @@
 
             <?php if ($_SESSION['role'] === "Employee") { ?>
                 <div class="role-box">
-                    <h3>Employee Tools</h3>
-                    <!-- EMPLOYEE FEATURES HERE -->
-
+                    <h3>Employee Access</h3>
+                    <p>No Access | Confidential Data</p>
                 </div>
             <?php } ?>
         </section>

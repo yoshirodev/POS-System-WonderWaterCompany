@@ -176,6 +176,118 @@ body{
 
 }
 
+/* ===== HR Management Styles ===== */
+
+.role-box label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.role-box input,
+.role-box select {
+    width: 99%;
+    padding: 8px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+/* Buttons span full width */
+.role-box input[type="submit"],
+.role-box button {
+    grid-column: 1 / -1;
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.role-box input[type="submit"] {
+    border: none;
+    background-color: #007BFF;
+    color: #fff;
+    margin-bottom: 10px;
+    transition: 0.3s;
+}
+
+.role-box input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.role-box button {
+    border: 1px solid #007BFF;
+    background-color: #fff;
+    color: #007BFF;
+    transition: 0.3s;
+}
+
+.role-box button:hover {
+    background-color: #007BFF;
+    color: #fff;
+}
+
+.role-box button a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    text-align: center;
+}
+
+/* Accounts Table */
+
+.role-box table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px; /* ensures horizontal scroll if needed */
+}
+
+.role-box th,
+.role-box td {
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 14px;
+    border-bottom: 1px solid #eee;
+    color: #333;
+}
+
+/* Header styling */
+.role-box th {
+    background-color: #f8f8f8;
+    font-weight: 600;
+    color: #555;
+}
+
+/* Zebra stripe for rows */
+.role-box tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Hover effect */
+.role-box tr:hover {
+    background-color: #e6f0ff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .role-box th,
+    .role-box td {
+        padding: 10px 8px;
+        font-size: 13px;
+    }
+}
+
+/* Responsive adjustment for very small screens */
+@media (max-width: 500px) {
+    .role-box {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+}
+
+
 @media(max-width:900px){
 
     .inventory-cards{

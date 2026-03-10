@@ -89,9 +89,9 @@
         <section class="role-section">
             <?php if ($_SESSION['role'] === "HR") { ?>
                 <div class="role-box">
-                    <h3>HR Controls</h3>
+                    <h3>HR Access</h3>
                     <!-- HR ONLY FEATURES HERE -->
-
+                    <p>Read Only Access</p>
                 </div>
             <?php } ?>
 
