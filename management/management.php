@@ -37,24 +37,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="management.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="../assets/logo.png">
     <title>Dashboard</title>
 </head>
 <body>
     <div class="sidebar">
-        <a href="management.php">Dashboard</a>
-        <a href="inventory.php">Inventory</a>
-        <a href="sales.php">Sales Overview</a>
-        <a href="transactions.php">Transactions</a>
-        <a href="settings.php">Settings</a>
+        <a href="management.php"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+        <a href="inventory.php"><i class="fa-solid fa-boxes-stacked"></i> Inventory</a>
+        <a href="sales.php"><i class="fa-solid fa-chart-line"></i> Sales Overview</a>
+        <a href="transactions.php"><i class="fa-solid fa-receipt"></i> Transactions</a>
+        <a href="settings.php"><i class="fa-solid fa-gear"></i> Settings</a>
     </div>
+
 
     <div class="topbar">
         <div class="profile-btn" onclick="toggleProfile()">
-            Profile
+            Profile <i class="fa-solid fa-user-circle"></i>
         </div>
 
         <button onclick="window.location.href='../logout.php'" class="logout-btn">
-            Logout
+            Logout <i class="fa-solid fa-right-from-bracket"></i>
         </button>
     </div>
 
@@ -71,7 +74,7 @@
 
         <!-- DASHBOARD SECTION (VISIBLE TO ALL) -->
         <section class="main-section">
-            <h1>Dashboard</h1>
+            <h1>Dashboard <i class="fa-solid fa-chart-pie"></i></h1>
             <div class="dashboard-cards">
                 <div class="card">
                     <h2>Daily Sales</h2>
@@ -88,7 +91,6 @@
             <?php if ($_SESSION['role'] === "HR") { ?>
                 <div class="role-box">
                     <h3>HR Management</h3>
-                    <!-- HR ONLY FEATURES HERE -->
                     <form id="container" action="registration.php" method="post">
                         <h1>Employee Account Registration Tool</h1>
                         <label for="lastname">Last Name</label>

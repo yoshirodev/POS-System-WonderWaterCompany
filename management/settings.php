@@ -7,7 +7,7 @@
         header("Location: ../portal.php");
         exit;
     }
-    
+
     $_SESSION['last_activity'] = time();
 
     $userID = $_SESSION['user_id'];
@@ -31,24 +31,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="management.css">
-    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="../assets/logo.png">
+    <title>Settings</title>
 </head>
 <body>
     <div class="sidebar">
-        <a href="management.php">Dashboard</a>
-        <a href="inventory.php">Inventory</a>
-        <a href="sales.php">Sales Overview</a>
-        <a href="transactions.php">Transactions</a>
-        <a href="settings.php">Settings</a>
+        <a href="management.php"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+        <a href="inventory.php"><i class="fa-solid fa-boxes-stacked"></i> Inventory</a>
+        <a href="sales.php"><i class="fa-solid fa-chart-line"></i> Sales Overview</a>
+        <a href="transactions.php"><i class="fa-solid fa-receipt"></i> Transactions</a>
+        <a href="settings.php"><i class="fa-solid fa-gear"></i> Settings</a>
     </div>
 
     <div class="topbar">
         <div class="profile-btn" onclick="toggleProfile()">
-            Profile
+            Profile <i class="fa-solid fa-user-circle"></i>
         </div>
 
         <button onclick="window.location.href='../logout.php'" class="logout-btn">
-            Logout
+            Logout <i class="fa-solid fa-right-from-bracket"></i>
         </button>
     </div>
 
@@ -63,7 +65,7 @@
 
     <div class="main">
         <section class="main-section">
-            <h1>Settings</h1>
+            <h1>Settings <i class="fa-solid fa-gear"></i></h1>
 
         </section>
 
