@@ -98,14 +98,14 @@
                         <thead>
                             <tr>
                                 <th>accID</th>
-                                <th>Account Type</th>
-                                <th>Birthdate</th>
-                                <th>Email</th>
-                                <th>First Name</th>
-                                <th>Gender</th>
                                 <th>Last Name</th>
+                                <th>First Name</th>
                                 <th>Middle Name</th>
+                                <th>Birthdate</th>
+                                <th>Gender</th>
+                                <th>Email</th>
                                 <th>Phone Number</th>
+                                <th>Account Type</th>
                                 <th>Username</th>
                             </tr>
                         </thead>

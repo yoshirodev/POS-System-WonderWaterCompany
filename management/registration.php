@@ -18,6 +18,9 @@
             $statement = $conn->prepare("INSERT INTO logindata (lastname, firstname, middlename, birthdate, gender, phonenumber, email, username, userpassword, accountType) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             $statement->bind_param("ssssssssss", $lastname, $firstname, $middlename, $date, $gender, $number, $email, $username, $hashedPassword, $accountType);
             $statement->execute();
+
+            session_unset();   
+            session_destroy(); 
             header("Location: ../portal.php"); 
         }
     }
