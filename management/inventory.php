@@ -110,7 +110,7 @@
         <?php if ($_SESSION['role'] === "Manager") { ?>
             <!-- MANAGER ONLY FEATURES HERE -->
 
-            <h1>Manager Controls</h1>
+            <h1>Manager Controls <i class="fa-solid fa-sliders"></i></h1>
 
             <div class="inv-role-box">
                 <form method="POST" required>
@@ -187,7 +187,7 @@
         <?php if ($_SESSION['role'] === "Employee") { ?>
             <!-- EMPLOYEE FEATURES HERE -->
 
-            <h1>Employee Controls</h1>
+            <h1>Employee Controls <i class="fa-solid fa-sliders"></i></h1>
 
             <div class="inv-role-box">
                 <form method="POST" required>
