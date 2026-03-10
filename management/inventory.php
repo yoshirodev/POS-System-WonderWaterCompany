@@ -25,6 +25,46 @@
     $user = $result->fetch_assoc();
 
     $inventoryresult = $conn->query("SELECT id, product_name, quantity, type, cost, image_path FROM inventory");
+
+    // Main CRUD Operations
+    if (isset($_POST["create"])) {
+        $product_name = $_POST["product_name"];
+        $cost = $_POST["cost"];
+        $quantity = $_POST["quantity"];
+        $type = $_POST["type"];
+
+        $sql_insert = $conn->prepare("INSERT INTO `inventory` (`product_name`, `cost`, `quantity`, `type`) VALUES (?, ?, ?, ?)");
+        $sql_insert->bind_param("ssss", $product_name, $cost, $quantity, $type);
+        $sql_insert->execute();
+
+        header("Location: inventory.php");
+        exit();
+    }
+
+    if (isset($_POST["update"])) {
+        $productID = $_POST["productID"];
+        $product_name = $_POST["product_name"];
+        $cost = $_POST["cost"];
+        $quantity = $_POST["quantity"];
+        $type = $_POST["type"];
+
+        $sql_insert = $conn->prepare("UPDATE `inventory` SET `product_name` = ?, `cost` = ?, `quantity` = ?, `type` = ? WHERE `id` = ?");
+        $sql_insert->bind_param("ssssi", $product_name, $cost, $quantity, $type, $productID);
+        $sql_insert->execute();
+
+        header("Location: inventory.php");
+        exit();
+    }
+
+    if (isset($_POST["delete"])) { 
+        $productID = $_POST["productID"]; 
+        
+        $sql_delete = $conn->prepare("DELETE FROM inventory WHERE id = ?"); 
+        $sql_delete->bind_param("i", $productID); 
+        $sql_delete->execute(); 
+        header("Location: inventory.php"); 
+        exit(); 
+    }
 ?>
 
 <!DOCTYPE html>
@@ -67,6 +107,159 @@
     </div>
 
     <div class="main">
+        <?php if ($_SESSION['role'] === "Manager") { ?>
+            <!-- MANAGER ONLY FEATURES HERE -->
+
+            <h1>Manager Controls</h1>
+
+            <div class="inv-role-box">
+                <form method="POST" required>
+                    <h3>Create</h3>
+
+                    <div class="form-row">
+
+                        <div class="form-group product">
+                            <label>Product Name</label>
+                            <input type="text" name="product_name" placeholder="required field" required>
+                        </div>
+
+                        <div class="form-group type">
+                            <label>Type</label>
+                            <input type="text" name="type" placeholder="required field" required>
+                        </div>
+
+                        <div class="form-group cost">
+                            <label>Cost</label>
+                            <input type="text" name="cost" placeholder="required field" required>
+                        </div>
+
+                        <div class="form-group quantity">
+                            <label>Quantity</label>
+                            <input type="text" name="quantity" placeholder="required field" required>
+                        </div>
+
+                    </div>
+
+                    <button type="submit" name="create">Create</button>
+                </form>
+            </div>
+
+            <div class="inv-control-box">
+                <form method="POST">
+
+                    <h3>Update Product Information</h3>
+
+                    <div class="update-row">
+
+                        <div class="update-group pid">
+                            <label>Product ID</label>
+                            <input type="text" name="productID" placeholder="enter product ID" required>
+                        </div>
+
+                        <div class="update-group product">
+                            <label>Product Name</label>
+                            <input type="text" name="product_name">
+                        </div>
+
+                        <div class="update-group type">
+                            <label>Type</label>
+                            <input type="text" name="type">
+                        </div>
+
+                        <div class="update-group cost">
+                            <label>Cost</label>
+                            <input type="text" name="cost">
+                        </div>
+
+                        <div class="update-group quantity">
+                            <label>Quantity</label>
+                            <input type="text" name="quantity">
+                        </div>
+
+                    </div>
+
+                    <button type="submit" name="update">Update</button>
+
+                </form>
+            </div>          
+        <?php } ?>
+
+        <?php if ($_SESSION['role'] === "Employee") { ?>
+            <!-- EMPLOYEE FEATURES HERE -->
+
+            <h1>Employee Controls</h1>
+
+            <div class="inv-role-box">
+                <form method="POST" required>
+                    <h3>Create</h3>
+
+                    <div class="form-row">
+
+                        <div class="form-group product">
+                            <label>Product Name</label>
+                            <input type="text" name="product_name" placeholder="required field" required>
+                        </div>
+
+                        <div class="form-group type">
+                            <label>Type</label>
+                            <input type="text" name="type" placeholder="required field" required>
+                        </div>
+
+                        <div class="form-group cost">
+                            <label>Cost</label>
+                            <input type="text" name="cost" placeholder="required field" required>
+                        </div>
+
+                        <div class="form-group quantity">
+                            <label>Quantity</label>
+                            <input type="text" name="quantity" placeholder="required field" required>
+                        </div>
+
+                    </div>
+
+                    <button type="submit" name="create">Create</button>
+                </form>
+            </div>
+
+            <div class="inv-control-box">
+                <form method="POST">
+
+                    <h3>Update Product Information</h3>
+
+                    <div class="update-row">
+
+                        <div class="update-group pid">
+                            <label>Product ID</label>
+                            <input type="text" name="productID" placeholder="enter product ID" required>
+                        </div>
+
+                        <div class="update-group product">
+                            <label>Product Name</label>
+                            <input type="text" name="product_name">
+                        </div>
+
+                        <div class="update-group type">
+                            <label>Type</label>
+                            <input type="text" name="type">
+                        </div>
+
+                        <div class="update-group cost">
+                            <label>Cost</label>
+                            <input type="text" name="cost">
+                        </div>
+
+                        <div class="update-group quantity">
+                            <label>Quantity</label>
+                            <input type="text" name="quantity">
+                        </div>
+
+                    </div>
+
+                    <button type="submit" name="update">Update</button>
+
+                </form>
+            </div>
+        <?php } ?>
 
         <section class="main-section">
             <h1>Inventory <i class="fa-solid fa-boxes-stacked"></i></h1>
@@ -81,6 +274,11 @@
                         <p>Stock: <?= htmlspecialchars($row['quantity']) ?></p>
                         <p>Cost: <?= htmlspecialchars($row['cost']) ?></p>
                         <p>Type: <?= htmlspecialchars($row['type']) ?></p>
+
+                        <form method="POST">
+                            <input type="hidden" name="productID" value="<?= $row['id'] ?>">
+                            <button type="submit" name="delete">Delete</button>
+                        </form>
                     </div>
                 <?php endwhile; ?>
             </div>
@@ -92,22 +290,6 @@
                     <h3>HR Access</h3>
                     <!-- HR ONLY FEATURES HERE -->
                     <p>Read Only Access</p>
-                </div>
-            <?php } ?>
-
-            <?php if ($_SESSION['role'] === "Manager") { ?>
-                <div class="role-box">
-                    <h3>Manager Controls</h3>
-                    <!-- MANAGER ONLY FEATURES HERE -->
-
-                </div>
-            <?php } ?>
-
-            <?php if ($_SESSION['role'] === "Employee") { ?>
-                <div class="role-box">
-                    <h3>Employee Tools</h3>
-                    <!-- EMPLOYEE FEATURES HERE -->
-
                 </div>
             <?php } ?>
         </section>

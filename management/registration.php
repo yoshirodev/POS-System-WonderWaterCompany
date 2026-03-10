@@ -19,9 +19,8 @@
             $statement->bind_param("ssssssssss", $lastname, $firstname, $middlename, $date, $gender, $number, $email, $username, $hashedPassword, $accountType);
             $statement->execute();
 
-            session_unset();   
-            session_destroy(); 
-            header("Location: ../portal.php"); 
+            header("Location: management.php");
+            exit();
         }
     }
 ?>

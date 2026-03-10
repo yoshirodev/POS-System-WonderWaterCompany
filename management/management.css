@@ -176,6 +176,194 @@ body{
 
 }
 
+/* ===== Inventory STYLES ===== */
+
+.inv-role-box{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    margin-bottom:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.05);
+}
+
+.inv-role-box h3{
+    margin-top:0;
+    color:#2563eb;
+}
+
+.inv-control-box {
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    margin-bottom:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.05);
+
+    top:10%;
+    position:sticky;
+    z-index:1000;
+}
+
+.inv-control-box h3{
+    margin-top:0;
+    color:#2563eb;
+}
+
+.inv-card form {
+    margin-top: 10px;
+}
+
+.inv-card button {
+    width: 100%;
+    padding: 8px;
+    background: #ff4d4d;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Inventory Role Box */
+
+.inv-role-box h3 {
+    margin-bottom: 10px;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.pid {
+    flex: 1.2;
+}
+
+
+.product {
+    flex: 2;
+}
+
+.type {
+    flex: 1.5;
+}
+
+.cost {
+    flex: 1;
+}
+
+.quantity {
+    flex: 1;
+}
+
+.form-group input {
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #fff;
+}
+
+.form-group label {
+    font-size: 13px;
+    margin-bottom: 4px;
+    color: #444;
+}
+
+.inv-role-box button {
+    margin-top: 15px;
+    padding: 8px 16px;
+    border: none;
+    background: #0040ff;
+    color: rgb(255, 255, 255);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.inv-role-box button:hover {
+    background: #0042c5;
+}
+
+@media (max-width: 700px) {
+    .form-row {
+        flex-direction: column;
+    }
+}
+
+/* Inventory Control Box */
+
+.inv-control-box h3 {
+    margin-bottom: 15px;
+}
+
+.update-row {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.update-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.pid {
+    flex: 1.2;
+}
+
+.product {
+    flex: 2;
+}
+
+.type {
+    flex: 1.5;
+}
+
+.cost {
+    flex: 1;
+}
+
+.quantity {
+    flex: 1;
+}
+
+.update-group input {
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #fff;
+}
+
+.update-group label {
+    font-size: 13px;
+    margin-bottom: 4px;
+    color: #444;
+}
+
+.inv-control-box button {
+    margin-top: 15px;
+    padding: 8px 16px;
+    border: none;
+    background: #0ac600;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.inv-control-box button:hover {
+    background: #008f11;
+}
+
+@media (max-width: 700px) {
+    .update-row {
+        flex-direction: column;
+    }
+}
+
+
 /* ===== HR Management Styles ===== */
 
 .role-box label {
@@ -241,7 +429,7 @@ body{
 .role-box table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 800px; /* ensures horizontal scroll if needed */
+    min-width: 800px; 
 }
 
 .role-box th,
@@ -253,24 +441,20 @@ body{
     color: #333;
 }
 
-/* Header styling */
 .role-box th {
     background-color: #f8f8f8;
     font-weight: 600;
     color: #555;
 }
 
-/* Zebra stripe for rows */
 .role-box tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-/* Hover effect */
 .role-box tr:hover {
     background-color: #e6f0ff;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
     .role-box th,
     .role-box td {
@@ -279,7 +463,6 @@ body{
     }
 }
 
-/* Responsive adjustment for very small screens */
 @media (max-width: 500px) {
     .role-box {
         grid-template-columns: 1fr;

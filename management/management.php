@@ -130,7 +130,7 @@
 
                 <div class="role-box">
                     <form id="container" action="registration.php" method="post">
-                        <h2>Employee Account Registration Tool</h2>
+                        <h2>Portal Account Registration Tool</h2>
                         <label for="lastname">Last Name</label>
                         <input type="text" name="lastname" placeholder="lastname">
                         <label for="firstname">First Name</label>
