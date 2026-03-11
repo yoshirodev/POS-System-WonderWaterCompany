@@ -1,0 +1,1 @@
+unset($_SESSION['cart']); - for cleaning cart after transaction

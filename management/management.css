@@ -455,6 +455,147 @@ body{
     background-color: #e6f0ff;
 }
 
+/* Transaction Styles */
+.cart-box {
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    margin-bottom:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.05);
+}
+
+.cart-box h3{
+    margin-top:0;
+    color:#2563eb;
+}
+
+.cart-box form {
+    margin-top: 10px;
+}
+
+.cart-row {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.cart-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.payment-option-group {
+    flex: 1.2;
+}
+
+.quantity {
+    flex: 2;
+}
+
+.cart-group input {
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #fff;
+    
+}
+
+#payment-option{
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #fff;
+}
+
+.cart-group label {
+    font-size: 13px;
+    margin-bottom: 4px;
+    color: #444;
+}
+
+.cart-box button {
+    margin-top: 15px;
+    padding: 8px 16px;
+    border: none;
+    background: #0ac600;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Payment Section Styles */
+
+.payment-box {
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    margin-bottom:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.05);
+}
+
+.payment-box h3{
+    margin-top:0;
+    color:#2563eb;
+}
+
+.payment-box form {
+    margin-top: 10px;
+}
+
+.payment-row {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.payment-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.products {
+    flex: 1.2;
+}
+
+.amount {
+    flex: 2;
+}
+
+.refnum {
+    flex: 2;
+}
+
+.payment-group input {
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #fff;
+    
+}
+
+#products-options{
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #fff;
+}
+
+.payment-group label {
+    font-size: 13px;
+    margin-bottom: 4px;
+    color: #444;
+}
+
+.payment-box button {
+    margin-top: 15px;
+    padding: 8px 16px;
+    border: none;
+    background: #0ac600;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
 @media (max-width: 768px) {
     .role-box th,
     .role-box td {

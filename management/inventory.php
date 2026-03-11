@@ -107,6 +107,15 @@
     </div>
 
     <div class="main">
+
+        <?php if ($_SESSION['role'] === "HR") { ?>
+            <div class="role-box">
+                <h3>HR Access</h3>
+                <!-- HR ONLY FEATURES HERE -->
+                <p>Read Only Access</p>
+            </div>
+        <?php } ?>
+
         <?php if ($_SESSION['role'] === "Manager") { ?>
             <!-- MANAGER ONLY FEATURES HERE -->
 
@@ -275,23 +284,15 @@
                         <p>Cost: <?= htmlspecialchars($row['cost']) ?></p>
                         <p>Type: <?= htmlspecialchars($row['type']) ?></p>
 
-                        <form method="POST">
-                            <input type="hidden" name="productID" value="<?= $row['id'] ?>">
-                            <button type="submit" name="delete">Delete</button>
-                        </form>
+                        <?php if ($_SESSION['role'] === "Manager") { ?>
+                            <form method="POST">
+                                <input type="hidden" name="productID" value="<?= $row['id'] ?>">
+                                <button type="submit" name="delete">Delete</button>
+                            </form>
+                        <?php } ?>
                     </div>
                 <?php endwhile; ?>
             </div>
-        </section>
-
-        <section class="role-section">
-            <?php if ($_SESSION['role'] === "HR") { ?>
-                <div class="role-box">
-                    <h3>HR Access</h3>
-                    <!-- HR ONLY FEATURES HERE -->
-                    <p>Read Only Access</p>
-                </div>
-            <?php } ?>
         </section>
     </div>
 </body>
