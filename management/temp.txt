@@ -1,1 +1,10 @@
-unset($_SESSION['cart']); - for cleaning cart after transaction
+Add a Date View in all pages
+
+Daily Sales Dashboard Update
+
+Sales Overview Logic
+    Daily Sales Table
+    Weekly Sales Table
+    Monthly Sales Table
+
+Settings Logics
