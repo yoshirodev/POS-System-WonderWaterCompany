@@ -48,13 +48,39 @@
         $quantity = $_POST["quantity"];
         $type = $_POST["type"];
 
-        $sql_insert = $conn->prepare("UPDATE `inventory` SET `product_name` = ?, `cost` = ?, `quantity` = ?, `type` = ? WHERE `id` = ?");
+        // Get current values
+        $get = $conn->prepare("SELECT * FROM inventory WHERE id = ?");
+        $get->bind_param("i", $productID);
+        $get->execute();
+        $result = $get->get_result();
+        $row = $result->fetch_assoc();
+
+        // If input empty, keep old value
+        if (empty($product_name)) {
+            $product_name = $row['product_name'];
+        }
+
+        if (empty($cost)) {
+            $cost = $row['cost'];
+        }
+
+        if (empty($quantity)) {
+            $quantity = $row['quantity'];
+        }
+
+        if (empty($type)) {
+            $type = $row['type'];
+        }
+
+        // Update
+        $sql_insert = $conn->prepare("UPDATE inventory SET product_name = ?, cost = ?, quantity = ?, type = ? WHERE id = ?");
         $sql_insert->bind_param("ssssi", $product_name, $cost, $quantity, $type, $productID);
         $sql_insert->execute();
 
         header("Location: inventory.php");
         exit();
     }
+
 
     if (isset($_POST["delete"])) { 
         $productID = $_POST["productID"]; 
