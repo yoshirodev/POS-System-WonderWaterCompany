@@ -52,6 +52,7 @@ body{
     padding:8px 14px;
     border-radius:6px;
     cursor:pointer;
+    transition: all 0.3s ease ;
 }
 
 .logout-btn{
@@ -75,6 +76,15 @@ body{
     display:none;
     box-shadow:0 10px 25px rgba(0,0,0,0.1);
     outline: 1px solid #1e293b;
+  
+
+}
+
+.profile-btn:hover{
+     transform: scale(1.05);
+     background:#cbd1da;
+
+
 }
 
 .main{
@@ -617,4 +627,8 @@ body{
     .inventory-cards{
         grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
     }
+}
+
+.delButton:hover{
+    background-color: red !important;
 }

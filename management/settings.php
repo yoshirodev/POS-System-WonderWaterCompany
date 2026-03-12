@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="management.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="icon" type="image/png" href="../assets/logo.png">
+  
     <title>Settings</title>
 </head>
 <body>
@@ -73,6 +74,7 @@
             <?php if ($_SESSION['role'] === "HR") { ?>
                 <div class="role-box">
                     <h3>HR Controls</h3>
+                   
                     <!-- HR ONLY FEATURES HERE -->
 
                 </div>

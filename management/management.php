@@ -107,6 +107,7 @@
                                 <th>Phone Number</th>
                                 <th>Account Type</th>
                                 <th>Username</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
@@ -122,6 +123,8 @@
                                     <td><?= htmlspecialchars($row['phonenumber']) ?></td>
                                     <td><?= htmlspecialchars($row['accountType']) ?></td>
                                     <td><?= htmlspecialchars($row['username']) ?></td>
+                                    <td><button class = "delButton" onclick = "deleteEmp(<?= $row['accID'] ?>)">Delete Employee</button></td>
+                                    
                                 </tr>
                             <?php endwhile; ?>
                         </tbody>
