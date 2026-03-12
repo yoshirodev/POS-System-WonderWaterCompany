@@ -27,7 +27,7 @@ function toggleRefnum() {
 
 function deleteEmp(accID) {
     if (confirm('Are you sure you want to delete this employee?')) {
-        fetch('delete_employee.php', {
+        fetch('management.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -38,7 +38,7 @@ function deleteEmp(accID) {
         .then(data => {
             if (data.trim() === 'success') {
                 alert('Employee deleted successfully!');
-                location.reload(); // Refresh the page
+                location.reload(); 
             } else {
                 alert('Error deleting employee: ' + data);
             }

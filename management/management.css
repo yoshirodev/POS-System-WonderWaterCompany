@@ -606,6 +606,16 @@ body{
     cursor: pointer;
 }
 
+.empDelButton {
+    width: 100%;
+    padding: 8px;
+    background: #ff4d4d;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 @media (max-width: 768px) {
     .role-box th,
     .role-box td {

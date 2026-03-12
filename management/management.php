@@ -31,6 +31,17 @@
     $total_stock = $row['total_stock'];
 
     $accShow = $conn->query("SELECT accID, firstname, middlename, lastname, birthdate, gender, email, phonenumber, accountType, username FROM logindata");
+
+    if (isset($_POST["delete"])) { 
+        $productID = $_POST["accID"]; 
+        
+        $sql_delete = $conn->prepare("DELETE FROM logindata WHERE accID = ?"); 
+        $sql_delete->bind_param("i", $productID); 
+        $sql_delete->execute(); 
+        header("Location: management.php"); 
+        exit(); 
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -123,7 +134,12 @@
                                     <td><?= htmlspecialchars($row['phonenumber']) ?></td>
                                     <td><?= htmlspecialchars($row['accountType']) ?></td>
                                     <td><?= htmlspecialchars($row['username']) ?></td>
-                                    <td><button class = "delButton" onclick = "deleteEmp(<?= $row['accID'] ?>)">Delete Employee</button></td>
+                                    <td>
+                                        <form method="POST">
+                                            <input type="hidden" name="accID" value="<?= $row['accID'] ?>">
+                                            <button class="empDelButton" type="submit" name="delete">Delete</button>
+                                        </form>
+                                    </td>
                                     
                                 </tr>
                             <?php endwhile; ?>

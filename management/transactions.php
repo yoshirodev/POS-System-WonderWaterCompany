@@ -87,11 +87,24 @@
     foreach ($_SESSION['cart'] as $cartItem) {
         $total += $cartItem['subtotal'];
     }
-    
+        
     if (isset($_POST['delete_item'])) {
+
         $index = $_POST['item_index'];
 
         if (isset($_SESSION['cart'][$index])) {
+
+            $item = $_SESSION['cart'][$index];
+
+            if (isset($item['type']) && $item['type'] === "service") {
+
+                $service_id = $item['service_id'];
+
+                $stmt = $conn->prepare("UPDATE service_requests SET status='Pending' WHERE service_id=?");
+                $stmt->bind_param("i", $service_id);
+                $stmt->execute();
+            }
+
             unset($_SESSION['cart'][$index]);
         }
 
@@ -100,6 +113,7 @@
         header("Location: transactions.php");
         exit();
     }
+
 
     if (isset($_POST["checkout"])) {
         $paymethod = $_POST["paymethod"];
@@ -130,14 +144,26 @@
 
         try {
             foreach ($_SESSION['cart'] as $cartItem) {
+
                 $product = $cartItem['product'];
                 $quantity = (int)$cartItem['quantity'];
                 $price = (float)$cartItem['price'];
                 $subtotal = (float)$cartItem['subtotal'];
 
-                $stmt = $conn->prepare("UPDATE inventory SET quantity = quantity - ? WHERE product_name = ?");
-                $stmt->bind_param("is", $quantity, $product);
-                $stmt->execute();
+                if (isset($cartItem['type']) && $cartItem['type'] === "service") {
+
+                    $service_id = $cartItem['service_id'];
+
+                    $stmt = $conn->prepare("UPDATE service_requests SET status='Done' WHERE service_id=?");
+                    $stmt->bind_param("i", $service_id);
+                    $stmt->execute();
+
+                } else {
+                    $stmt = $conn->prepare("UPDATE inventory SET quantity = quantity - ? WHERE product_name = ?");
+                    $stmt->bind_param("is", $quantity, $product);
+                    $stmt->execute();
+
+                }
 
                 $stmt = $conn->prepare("
                     INSERT INTO transaction_log 
@@ -147,6 +173,7 @@
                 $stmt->bind_param("sidssdds", $product, $quantity, $price, $paymethod, $amount, $change, $subtotal, $refnum);
                 $stmt->execute();
             }
+
 
             $conn->commit();
 
@@ -164,6 +191,39 @@
         }
     }
 
+    $service_req = $conn->query("SELECT * FROM service_requests");
+
+    if (isset($_POST['done_service'])) {
+
+        $service_id = $_POST['service_id'];
+
+        $stmt = $conn->prepare("SELECT service_ordered, price FROM service_requests WHERE service_id = ?");
+        $stmt->bind_param("i", $service_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $service = $result->fetch_assoc();
+
+        if ($service) {
+
+            $cartItem = [
+                "product" => $service['service_ordered'],
+                "quantity" => 1,
+                "price" => $service['price'],
+                "subtotal" => $service['price'],
+                "type" => "service",
+                "service_id" => $service_id
+            ];
+
+            $_SESSION['cart'][] = $cartItem;
+
+            $update = $conn->prepare("UPDATE service_requests SET status='Payment' WHERE service_id = ?");
+            $update->bind_param("i", $service_id);
+            $update->execute();
+        }
+
+        header("Location: transactions.php");
+        exit();
+    }
 
 ?>
 
@@ -317,6 +377,53 @@
                 </div>
 
                 <div class="role-box">
+                    <h3>Service Request Management</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Service ID</th>
+                                <th>Client</th>
+                                <th>Address</th>
+                                <th>Service</th>
+                                <th>Price</th>
+                                <th>Phone No.</th>
+                                <th>Email</th>
+                                <th>Time Requested</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php while ($row = $service_req->fetch_assoc()): ?>
+                                <tr>
+                                    <td><?= htmlspecialchars($row['service_id']) ?></td>
+                                    <td><?= htmlspecialchars($row['name']) ?></td>
+                                    <td><?= htmlspecialchars($row['address']) ?></td>
+                                    <td><?= htmlspecialchars($row['service_ordered']) ?></td>
+                                    <td><?= htmlspecialchars($row['price']) ?></td>
+                                    <td><?= htmlspecialchars($row['phone_no']) ?></td>
+                                    <td><?= htmlspecialchars($row['email']) ?></td>
+                                    <td><?= htmlspecialchars($row['created_at']) ?></td>
+                                    <td><?= htmlspecialchars($row['status']) ?></td>
+
+                                    <td>
+                                        <?php if ($row['status'] === "Pending"): ?>
+                                            <form method="POST">
+                                                <input type="hidden" name="service_id" value="<?= $row['service_id'] ?>">
+                                                <button type="submit" name="done_service">Done</button>
+                                            </form>
+                                        <?php else: ?>
+                                            —
+                                        <?php endif; ?>
+                                    </td>
+
+                                </tr>
+                            <?php endwhile; ?>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="role-box">
                     <h3>Transaction Log</h3>
                     <table>
                         <thead>
@@ -444,6 +551,53 @@
                                     </tr>
                                 <?php endforeach; ?>
                             <?php endif; ?>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="role-box">
+                    <h3>Service Request Management</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Service ID</th>
+                                <th>Client</th>
+                                <th>Address</th>
+                                <th>Service</th>
+                                <th>Price</th>
+                                <th>Phone No.</th>
+                                <th>Email</th>
+                                <th>Time Requested</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php while ($row = $service_req->fetch_assoc()): ?>
+                                <tr>
+                                    <td><?= htmlspecialchars($row['service_id']) ?></td>
+                                    <td><?= htmlspecialchars($row['name']) ?></td>
+                                    <td><?= htmlspecialchars($row['address']) ?></td>
+                                    <td><?= htmlspecialchars($row['service_ordered']) ?></td>
+                                    <td><?= htmlspecialchars($row['price']) ?></td>
+                                    <td><?= htmlspecialchars($row['phone_no']) ?></td>
+                                    <td><?= htmlspecialchars($row['email']) ?></td>
+                                    <td><?= htmlspecialchars($row['created_at']) ?></td>
+                                    <td><?= htmlspecialchars($row['status']) ?></td>
+
+                                    <td>
+                                        <?php if ($row['status'] === "Pending"): ?>
+                                            <form method="POST">
+                                                <input type="hidden" name="service_id" value="<?= $row['service_id'] ?>">
+                                                <button type="submit" name="done_service">Done</button>
+                                            </form>
+                                        <?php else: ?>
+                                            —
+                                        <?php endif; ?>
+                                    </td>
+
+                                </tr>
+                            <?php endwhile; ?>
                         </tbody>
                     </table>
                 </div>

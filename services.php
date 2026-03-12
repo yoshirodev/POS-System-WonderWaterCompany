@@ -4,15 +4,40 @@
 
     $message = "";
     $searchResults = [];
-    
+
     if (isset($_POST['name'], $_POST['address'], $_POST['phone'], $_POST['email'], $_POST['service'])) {
+
         $name    = $_POST['name'];
         $address = $_POST['address'];
         $phone   = $_POST['phone'];
         $email   = $_POST['email'];
         $service = $_POST['service'];
-        $price   = 25000;
         $status  = "pending";
+
+        switch ($service) {
+            case "Membrane Cleaning":
+                $price = 3000;
+                break;
+
+            case "Rehab of Media Filters":
+                $price = 4500;
+                break;
+
+            case "Repair and Upgrades":
+                $price = 2500;
+                break;
+
+            case "Dual Membrane Upgrade":
+                $price = 18000;
+                break;
+
+            case "Supply and Install Water Stations":
+                $price = 200000;
+                break;
+
+            default:
+                $price = 0;
+        }
 
         $stmt = $conn->prepare(
             "INSERT INTO service_requests
@@ -28,6 +53,7 @@
             $message = "Something went wrong. Please try again.";
         }
     }
+
 
     if (isset($_POST['search'], $_POST['search_value'])) {
         $search = $_POST['search_value'];
@@ -135,7 +161,7 @@
         <form method="POST" class="service-form">
             <input type="text" name="name" placeholder="Name / Organization Name" required>
             <textarea name="address" placeholder="Address" required></textarea>
-            <input type="text" name="phone" placeholder="Phone Number" required>
+            <input type="number" name="phone" placeholder="Phone Number" required>
             <input type="email" name="email" placeholder="Email Address" required>
 
             <select name="service" required>
