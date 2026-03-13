@@ -106,6 +106,9 @@
 
         <!-- DASHBOARD SECTION (VISIBLE TO ALL) -->
         <section class="main-section">
+            <h1 style="color: #2563eb;">WELCOME BACK, <?= htmlspecialchars($user['firstname']) ?>!</h1>
+            <div class="role-box"><h2>Here's what's happening with the store today.</h2></div>
+            
             <h1>Dashboard <i class="fa-solid fa-chart-pie"></i></h1>
             <div class="dashboard-cards">
                 <div class="card">

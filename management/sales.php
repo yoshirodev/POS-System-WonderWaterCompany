@@ -27,6 +27,12 @@
     }
 
     $user = $result->fetch_assoc();
+
+    $dailySales = $conn->query("SELECT daily_id, sales_date, total_items_sold, total_revenue, total_transactions FROM daily_sales ORDER BY sales_date DESC");
+
+    $weeklySales = $conn->query("SELECT weekly_id, week_number, year, total_items_sold, total_revenue, total_transactions FROM weekly_sales ORDER BY year DESC, week_number DESC");
+
+    $monthlySales = $conn->query("SELECT monthly_id, month, year, total_items_sold, total_revenue, total_transactions FROM monthly_sales ORDER BY year DESC, month DESC");
 ?>
 
 <!DOCTYPE html>
@@ -90,9 +96,86 @@
 
             <?php if ($_SESSION['role'] === "Manager") { ?>
                 <div class="role-box">
-                    <h3>Manager Controls</h3>
-                    <!-- MANAGER ONLY FEATURES HERE -->
+                    <h3>Daily Sales</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Daily Sales ID</th>
+                                <th>Total Revenue</th>
+                                <th>Total Items Sold</th>
+                                <th>Total Transactions</th>
+                                <th>Sales Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php while ($row = $dailySales->fetch_assoc()): ?>
+                                <tr>
+                                    <td><?= htmlspecialchars($row['daily_id']) ?></td>
+                                    <td><?= htmlspecialchars($row['total_revenue']) ?></td>
+                                    <td><?= htmlspecialchars($row['total_items_sold']) ?></td>
+                                    <td><?= htmlspecialchars($row['total_transactions']) ?></td>       
+                                    <td><?= htmlspecialchars($row['sales_date']) ?></td>
+                                    
+                                </tr>
+                            <?php endwhile; ?>
+                        </tbody>
+                    </table>
+                </div>
 
+                <div class="role-box">
+                    <h3>Weekly Sales</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Weekly Sales ID</th>
+                                <th>Total Revenue</th>
+                                <th>Total Items Sold</th>
+                                <th>Total Transactions</th>
+                                <th>Week Number</th>
+                                <th>Year</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php while ($row = $weeklySales->fetch_assoc()): ?>
+                                <tr>
+                                    <td><?= htmlspecialchars($row['weekly_id']) ?></td>
+                                    <td><?= htmlspecialchars($row['total_revenue']) ?></td>
+                                    <td><?= htmlspecialchars($row['total_items_sold']) ?></td>
+                                    <td><?= htmlspecialchars($row['total_transactions']) ?></td>
+                                    <td><?= htmlspecialchars($row['week_number']) ?></td>
+                                    <td><?= htmlspecialchars($row['year']) ?></td>
+                                </tr>
+                            <?php endwhile; ?>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="role-box">
+                    <h3>Monthly Sales</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Monthly Sales ID</th>
+                                <th>Total Revenue</th>
+                                <th>Total Items Sold</th>
+                                <th>Total Transactions</th>
+                                <th>Month</th>
+                                <th>Year</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php while ($row = $monthlySales->fetch_assoc()): ?>
+                                <tr>
+                                    <td><?= htmlspecialchars($row['monthly_id']) ?></td>
+                                    <td><?= htmlspecialchars($row['total_revenue']) ?></td>
+                                    <td><?= htmlspecialchars($row['total_items_sold']) ?></td>
+                                    <td><?= htmlspecialchars($row['total_transactions']) ?></td>
+                                    <td><?= htmlspecialchars($row['month']) ?></td>
+                                    <td><?= htmlspecialchars($row['year']) ?></td>
+                                </tr>
+                            <?php endwhile; ?>
+                        </tbody>
+                    </table>
                 </div>
             <?php } ?>
 

@@ -1,6 +1,4 @@
-Add a Date View in all pages
 
-Daily Sales Dashboard Update
 
 Sales Overview Logic
     Daily Sales Table
@@ -9,4 +7,3 @@ Sales Overview Logic
 
 Settings Logics
 
-add a confirmation system
