@@ -12,6 +12,10 @@
 
     $userID = $_SESSION['user_id'];
 
+    $today = date("F d, Y"); 
+
+    date_default_timezone_set("Asia/Manila");
+
     $statement = $conn->prepare("SELECT firstname, middlename, lastname, birthdate, email, phonenumber, accountType FROM logindata WHERE accID = ?");
     $statement->bind_param("i", $userID);
     $statement->execute();
@@ -38,6 +42,12 @@
 </head>
 <body>
     <div class="sidebar">
+
+        <div class="date-box">
+            <p><strong>Today</strong></p>
+            <p><?= $today ?></p>
+        </div>
+
         <a href="management.php"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
         <a href="inventory.php"><i class="fa-solid fa-boxes-stacked"></i> Inventory</a>
         <a href="sales.php"><i class="fa-solid fa-chart-line"></i> Sales Overview</a>

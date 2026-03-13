@@ -8,6 +8,11 @@
         exit;
     }
 
+    $today = date("F d, Y"); 
+
+    date_default_timezone_set("Asia/Manila");
+    $time = date("h:i A");
+
     $_SESSION['last_activity'] = time();
 
     $userID = $_SESSION['user_id'];
@@ -31,6 +36,14 @@
     $total_stock = $row['total_stock'];
 
     $accShow = $conn->query("SELECT accID, firstname, middlename, lastname, birthdate, gender, email, phonenumber, accountType, username FROM logindata");
+
+    $todaySalesQuery = "SELECT SUM(subtotal) AS today_sales FROM transaction_log WHERE DATE(timestamp) = CURDATE()";
+
+    $salesResult = mysqli_query($conn, $todaySalesQuery);
+    $salesRow = mysqli_fetch_assoc($salesResult);
+
+    $today_sales = $salesRow['today_sales'] ?? 0;
+
 
     if (isset($_POST["delete"])) { 
         $productID = $_POST["accID"]; 
@@ -56,6 +69,12 @@
 </head>
 <body>
     <div class="sidebar">
+
+        <div class="date-box">
+            <p><strong>Today</strong></p>
+            <p><?= $today ?></p>
+        </div>
+
         <a href="management.php"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
         <a href="inventory.php"><i class="fa-solid fa-boxes-stacked"></i> Inventory</a>
         <a href="sales.php"><i class="fa-solid fa-chart-line"></i> Sales Overview</a>
@@ -90,12 +109,20 @@
             <h1>Dashboard <i class="fa-solid fa-chart-pie"></i></h1>
             <div class="dashboard-cards">
                 <div class="card">
-                    <h2>Daily Sales</h2>
-                    <p>₱0.00</p>
+                    <h2>Sales Today</h2>
+                    <p>₱<?= number_format($today_sales, 2) ?></p>
                 </div>
                 <div class="card">
                     <h2>Overall Stock</h2>
                     <p><?php echo $total_stock; ?> Items</p>
+                </div>
+                <div class="card">
+                    <h2><strong>Today</strong></h2>
+                    <p><?= $today ?></p>
+                </div>
+                <div class="card">
+                    <h2><strong>Time</strong></h2>
+                    <p><?= $time ?></p>
                 </div>
             </div>
         </section>

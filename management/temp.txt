@@ -8,3 +8,5 @@ Sales Overview Logic
     Monthly Sales Table
 
 Settings Logics
+
+add a confirmation system
