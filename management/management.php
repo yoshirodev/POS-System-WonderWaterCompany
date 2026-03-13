@@ -162,7 +162,7 @@
                                     <td><?= htmlspecialchars($row['accountType']) ?></td>
                                     <td><?= htmlspecialchars($row['username']) ?></td>
                                     <td>
-                                        <form method="POST">
+                                        <form method="POST" onsubmit="return confirm('Are you sure you want to delete this item?');">
                                             <input type="hidden" name="accID" value="<?= $row['accID'] ?>">
                                             <button class="empDelButton" type="submit" name="delete">Delete</button>
                                         </form>
